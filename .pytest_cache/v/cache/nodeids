@@ -1,0 +1,4 @@
+[
+  "test/test_db.py::TestDB::()::test_update_all_coins",
+  "test/test_db.py::TestDB::()::test_update_all_symbols"
+]
