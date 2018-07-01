@@ -10,3 +10,10 @@ class TestDB(object):
     def test_update_all_symbols(self):
         self.db.update_all_symbols()
         assert len(self.db.get_all_symbols()) > 0
+
+    def test_get_latest_kline(self):
+        kline = self.db.get_latest_kline(101, 3)
+        print(kline)
+
+    def test_update_kline(self):
+        self.db.update_kline(104, 3)

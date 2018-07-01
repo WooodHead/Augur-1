@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS test CHARACTER SET utf8;
+CREATE DATABASE IF NOT EXISTS augur CHARACTER SET utf8;
 
-use test;
+use augur;
 
 CREATE TABLE IF NOT EXISTS all_coins (
     coin_id VARCHAR(8) PRIMARY KEY,
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS kline_15min (
     usdt_amount FLOAT, 
     volume FLOAT,
     FOREIGN KEY fk_symbol_id(symbol_id)
-    REFERENCES symbol(symbol_id) 
+    REFERENCES all_symbols(symbol_id) 
     ON UPDATE CASCADE,
     PRIMARY KEY (`symbol_id`, `timestamp`)
 );
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS kline_60min (
     usdt_amount FLOAT, 
     volume FLOAT,
     FOREIGN KEY fk_symbol_id(symbol_id)
-    REFERENCES symbol(symbol_id) 
+    REFERENCES all_symbols(symbol_id) 
     ON UPDATE CASCADE,
     PRIMARY KEY (`symbol_id`, `timestamp`)
 )
