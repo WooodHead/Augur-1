@@ -7,6 +7,7 @@ from db.DB import DB
 import schedule
 import threading
 import time
+import json
 
 kline_types = {
     # type: interval (min)
@@ -16,26 +17,33 @@ kline_types = {
 
 threads = set()
 
+with open('config.json', 'r') as infile:
+    config = json.load(infile)
+
+
 def update_all_klines(kline_type):
-    db = DB()
+    db = DB(database=config['db'])
     try:
         db.update_all_klines(kline_type)
+        db.close()
     except Exception as err:
         print(err)
     threads.remove('update_all_klines-%s' % kline_type)
 
 def update_all_symbols():
-    db = DB()
+    db = DB(database=config['db'])
     try:
         db.update_all_symbols()
+        db.close()
     except Exception as err:
         print(err)
     threads.remove('update_all_symbols')
 
 def update_all_coins():
-    db = DB()
+    db = DB(database=config['db'])
     try:
         db.update_all_coins()
+        db.close()
     except Exception as err:
         print(err)
     threads.remove('update_all_coins')    
